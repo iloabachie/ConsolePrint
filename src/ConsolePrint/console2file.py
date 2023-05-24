@@ -24,7 +24,6 @@ def endConsoleSave():
             print("Error opening file.")
 
 
-
 if __name__ == "__main__":
     print("Running module test")
     import calendar

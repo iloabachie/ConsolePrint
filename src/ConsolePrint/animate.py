@@ -1,8 +1,13 @@
 import time
 import os
+import shutil
+
+terminal_width, terminal_height = shutil.get_terminal_size()
 
 if __name__ == "__main__":
     os.system('cls')
+    print(f'{terminal_width=}, {terminal_height=}')
+    print(os.get_terminal_size())
 
 
 def printing(text: str, delay=0.05, style='letter', stay=True, rev=False):
@@ -74,13 +79,20 @@ def animate2(text: str, symbol="#", delay=0.05):
         time.sleep(delay)
     flashprint(text, blinks=2, stay=True)
 
-def text_box(text: str, symbol="#", padding=False, wall=True, indent=4):
-    """Prints text in a box of symbols"""
+def text_box(text: str, symbol="#", padding=False, wall=True, align="center"):
+    """Prints text in a box of symbols
+If the align parameter is a number then the box is indented"""
     end = 5 if padding else 3
     text_row = 3 if padding else 2
     length = len(text) + 8
     left_border = text_row - 1  if padding else text_row
     right_border = text_row + 1 if padding else text_row
+    
+    if align == "left": indent = 0
+    elif align == "right": indent = terminal_width - length
+    elif align == "center": indent = terminal_width//2 - length//2
+    elif isinstance(align, int): indent = align      
+    
     for row in range(1, end + 1):
         for col in range(1, length + 1):
             if col == 1:
@@ -102,7 +114,7 @@ def text_box(text: str, symbol="#", padding=False, wall=True, indent=4):
                 print()
                 
                 
-def star_square(num: int, symbol="@"):
+def star_square(num: int, symbol="#"):
     if num < 5:
         num = 5
     else:        
@@ -123,13 +135,11 @@ def star_square(num: int, symbol="@"):
             
 # Code test
 if __name__ == "__main__":
-    printing("This text prints word by word. Cool isn't it?", style='word', delay=0.3)
-    printing("This text prints letter by letter and does not move to the new line", 0.06, 'letter', False, False)
-    print()
-    printing("This text prints letter by letter but in reverse", rev=True)
-    flashprint("This entire Text is flashing")
-    flashtext('The word at the end of this text is ', 'flashing', delay=0.2, blinks=5)
-    animate1("This text is animated with # symbol")
-    animate2("This text is animated with # symbol")              
-    star_square(8, symbol="&")    
-    text_box("C O D E  B R E A K E R", symbol="$", padding=True, wall=True)
+    printing("hello this should print letter by letter", delay=0.05, style="letter", stay=True, rev=False)
+    printing("hello this should print word by word but in reverse", delay=0.05, style="word", stay=True, rev=True)
+    flashprint("The entire text should flash", flashes=5, delay=0.2, stay=True)
+    flashtext("The text in  will flash", "UPPER CASE", blinks=5, index=12, delay=0.2)
+    animate1("This text is animated with #", symbol="#")
+    animate2("Prints letter by letter but masked with # first", symbol="#", delay=0.05)
+    text_box("C O D E  B R E A K E R", symbol="#", padding=True, wall=True, align="center")
+    star_square(8, symbol="@")
