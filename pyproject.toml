@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ConsolePrint"
-version = "1.0.2"
+version = "1.2.5"
 authors = [
   { name="Udemezue Iloabachie", email="udemezue@gmail.com" },
 ]
-description = "A package to animate print output to console"
+description = "A package to animate and beautify print output to console"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
