@@ -1,11 +1,12 @@
 """This module  saves terminal output to file."""
 import sys
 import subprocess
+from loading import loading2
 
 def startConsoleSave():
     """Starts the process to save the output to file"""
     global filename
-    filename = input("Choose filename and extension: ") # specified filename/path      
+    filename = input("Enter the output filename and extension: ") # specified filename/path      
     sys.stdout = open(filename, 'a')  # redirects output to specified file
 
 
@@ -13,8 +14,10 @@ def endConsoleSave():
     """Ends the save to file process and returns output to console"""  
     sys.stdout.close()
     sys.stdout = sys.__stdout__   # redirects output from file back to terminal
+    loading2(1, "")
+    print("    ")
     print(f"Output has been saved to {filename}")
-    open_file = input("Would you like to open the file? y/n: ")
+    open_file = input("\nWould you like to open the file? y/n: ")
     if open_file.strip().lower() == "y":
         try:
             subprocess.Popen(["start", "", filename], shell=True)

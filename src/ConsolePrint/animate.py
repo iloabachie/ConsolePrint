@@ -1,9 +1,14 @@
 import time
 import os
 
-def ansify_color(color:str):  
+if __name__ == "__main__":
+    os.system('cls')
+    print('\033[0m', end="\r")
+
+_terminal_width = os.get_terminal_size().columns
+
+def _ansify_color(color:str):  
     match color:
-        #colours
         case 'default': color = '\033[0m'
         case 'grey': color = '\033[30m'
         case 'red': color = '\033[31m'
@@ -13,7 +18,6 @@ def ansify_color(color:str):
         case 'magenta': color = '\033[35m'
         case 'cyan': color = '\033[36m'
         case 'white': color = '\033[37m'
-        # Text Formats
         case 'bold': color = '\033[1m'
         case 'italics': color = '\033[3m'
         case 'underscore': color = '\033[4m'
@@ -31,16 +35,9 @@ def ansify_color(color:str):
                 raise Exception("Invalid ANSI escape sequence for argument format")
     return color
 
-
-if __name__ == "__main__":
-    os.system('cls')
-    print('\033[0m', end="\r")
-
-terminal_width = os.get_terminal_size().columns
-
 def printing(text:str, delay:float=0.05, style:str='letter', stay:bool=True, rev:bool=False, format:str='default'):
     """Prints text to console letter by letter or word by word"""
-    format = ansify_color(format)
+    format = _ansify_color(format)
     print(format, end='\r')
     text = text.strip()
     match rev:
@@ -71,7 +68,7 @@ def printing(text:str, delay:float=0.05, style:str='letter', stay:bool=True, rev
 
 def flashprint(text:str, blinks:int=5, delay:float=0.2, stay:bool=True, format:str='default'):
     """Gets printed output to blink"""
-    format = ansify_color(format)
+    format = _ansify_color(format)
     print(format, end='\r')
     text = text.strip()
     for _ in range(blinks):
@@ -84,10 +81,8 @@ def flashprint(text:str, blinks:int=5, delay:float=0.2, stay:bool=True, format:s
 
 def flashtext(phrase:str, text:str, index='end', blinks:int=5, delay:float=0.2, format:str='default'):
     """Hilights key word by flashing it"""
-    format = ansify_color(format)
+    format = _ansify_color(format)
     print(format, end='\r')
-    text = text.strip()
-    phrase = phrase.strip()
     textb = ' ' * len(text)
     if index == 'end':
         phrase1 = phrase
@@ -109,7 +104,7 @@ def animate1(text:str, symbol:str="#", format:str='default'):
     """Flashing masked text to transition to flasing text"""
     if len(symbol) != 1:
         raise Exception("Symbol input should be a single character")
-    format = ansify_color(format)
+    format = _ansify_color(format)
     text = text.strip()
     symbol = len(text) * symbol
     flashprint(symbol, blinks=3, stay=False, format=format)
@@ -120,7 +115,7 @@ def animate2(text:str, symbol:str="#", delay:float=0.05, format:str='default'):
     """Reveals all characters text by text but first masked then flashes"""
     if len(symbol) != 1:
         raise Exception("Symbol input should be a single character")
-    format = ansify_color(format)
+    format = _ansify_color(format)
     print(format, end='\r')
     text = text.strip()
     symbol = len(text) * symbol
@@ -137,7 +132,7 @@ If the align parameter is a number then the box is indented by the number count"
         text = " ".join(list(text)).upper()
     if len(symbol) != 1:
         raise Exception("Symbol input should be a single character")
-    format = ansify_color(format)
+    format = _ansify_color(format)
     print(format, end='\r')
     text = text.strip()
     end = 5 if padding else 3
@@ -147,9 +142,9 @@ If the align parameter is a number then the box is indented by the number count"
     right_border = text_row + 1 if padding else text_row
     
     if align == "left": indent = 0
-    elif align == "right": indent = terminal_width - length
-    elif align == "center": indent = terminal_width//2 - length//2
-    elif isinstance(align, int) and align <= (terminal_width - length): indent = align
+    elif align == "right": indent = _terminal_width - length
+    elif align == "center": indent = _terminal_width//2 - length//2
+    elif isinstance(align, int) and align <= (_terminal_width - length): indent = align
     else: raise Exception(f"Error in the align argument: {align=}")  
     
     for row in range(1, end + 1):
@@ -176,17 +171,17 @@ If the align parameter is a number then the box is indented by the number count"
 def star_square(num:int, symbol:str="#", align:str='center', flush:bool=True, format:str='default'):
     if len(symbol) != 1:
         raise Exception("Symbol input should be a single character")
-    format = ansify_color(format)
+    format = _ansify_color(format)
     print(format, end='\r')
-    if num < 5 or num > terminal_width or not isinstance(num, int):
-        raise Exception(f"Invalid square size. Number must be an integer greater than 4 and less than the terminal width: {terminal_width}")
+    if num < 5 or num > _terminal_width or not isinstance(num, int):
+        raise Exception(f"Invalid square size. Number must be an integer greater than 4 and less than the terminal width: {_terminal_width}")
     elif align == 'center':
-        indent = '\033[0m' + (' ' * (terminal_width//2 - num//2)) + format
+        indent = '\033[0m' + (' ' * (_terminal_width//2 - num//2)) + format
     elif align == 'right':
-        indent = '\033[0m' + (' ' * (terminal_width - num)) + format
+        indent = '\033[0m' + (' ' * (_terminal_width - num)) + format
     elif align == 'left':
         indent = ''  
-    elif isinstance(align, int) and terminal_width - align > num:
+    elif isinstance(align, int) and _terminal_width - align > num:
         indent = '\033[0m' + (" " * align) + format
     else:
         raise Exception("Align parameter is invalid")    
@@ -209,15 +204,15 @@ def star_square(num:int, symbol:str="#", align:str='center', flush:bool=True, fo
     
 
 def asteriskify(text:str, align:str="center", underscore:bool=True, format:str='default'):
-    format = ansify_color(format)
+    format = _ansify_color(format)
     print(format, end='\r')
     text = text.strip()
     length = len(text)
     
     if align == 'center':
-        indent = '\033[0m' + ' ' * (terminal_width//2 - length//2) + format
+        indent = '\033[0m' + ' ' * (_terminal_width//2 - length//2) + format
     elif align == 'right':
-        indent = '\033[0m' + ' ' * (terminal_width - length) + format
+        indent = '\033[0m' + ' ' * (_terminal_width - length) + format
     elif align == 'left':
         indent = ''
     else:
