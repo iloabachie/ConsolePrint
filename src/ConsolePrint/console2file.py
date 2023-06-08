@@ -6,11 +6,11 @@ import time
 
 def __saving(t, text='Saving...', confirm=False):
     "Takes two arguments, time and text to display such as 'loading...'"
-    load = ['-', '\\', '|', '/', ] * t
+    load = ['-', '\\', '|', '/', '-'] * t
     print()
     for _ in load:
         print(f"  {_}  {text}", end='\r')
-        time.sleep(0.5)
+        time.sleep(0.4)
     if confirm:
         print('Saved!!!         ')
 

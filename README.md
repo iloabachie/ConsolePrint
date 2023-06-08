@@ -68,7 +68,7 @@ prt.flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, f
 prt.flashtext("The text in  will flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='yellow')
 prt.animate1("This text is animated with #", symbol="#", format='magenta')
 prt.animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
-prt.text_box("B O X E D  I N", symbol="#", padding=True, wall=True, align='right', format='\033[48;5;4m')
+prt.text_box("boxed in", symbol="#", padding=True, wall=True, align='right', format='\033[48;5;4m')
 prt.asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan')
 ```
 
