@@ -9,7 +9,7 @@ You may install it form PyPI.org using the pip command typed in your terminal.<b
 `pip install ConsolePrint`
 
 # Test Cases
-1.  Run your function between the start and end console save functions to save it to file.
+1.  This permits output of programs to be saved in a file.  Run your code between the start and end console save functions to save the output to file.
 ```python
 import ConsolePrint.console2file as file  
 
@@ -19,7 +19,7 @@ from calendar import calendar
 print(calendar(2023))
 file.endConsoleSave()
 ```
-2.  Here you may use ANSI escape sequences for the format argument and change others as desired.<br>
+2.  This module permits differnt colourful print animations to be output to file.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
 <b>Preset string values for the format argument</b>
 <table>
     <tr>
@@ -72,7 +72,7 @@ prt.text_box("B O X E D  I N", symbol="#", padding=True, wall=True, align='right
 prt.asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan')
 ```
 
-3.  Here, the load time is specified as an integer in seconds.
+3.  This adds loading animations to terminal program.  The load time argument is specified as an integer in seconds.
 ```python
 import ConsolePrint.loading as load  
 
