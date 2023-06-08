@@ -34,11 +34,7 @@ def ansify_color(color:str):
 
 if __name__ == "__main__":
     os.system('cls')
-    # os.system('py')
     print('\033[0m', end="\r")
-    print((terminal_size:=os.get_terminal_size()))
-    print(f'{terminal_size.columns = }, {terminal_size.lines = }')
-    print()
 
 terminal_width = os.get_terminal_size().columns
 
