@@ -13,8 +13,8 @@ You may install it form PyPI.org using the pip command typed in your terminal.<b
 ```python
 import ConsolePrint.console2file as file  
 
-file.startConsoleSave()
-# Saves all output between the start and end functions to file
+file.startConsoleSave(name="my_output.txt", prompt=False)
+# Saves all output between the start and end functions to filename argument
 from calendar import calendar
 print(calendar(2023))
 file.endConsoleSave()
@@ -72,7 +72,7 @@ prt.text_box("boxed in", symbol="#", padding=True, wall=True, align='right', for
 prt.asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan')
 ```
 
-3.  This adds loading animations to terminal program.  The load time argument is specified as an integer in seconds.
+<!-- 3.  This adds loading animations to terminal program.  The load time argument is specified as an integer in seconds.
 ```python
 import ConsolePrint.loading as load  
 
@@ -82,7 +82,7 @@ print()
 load.loading2(5)
 print()
 load.loading3(5)
-```
+``` -->
 ## License
 This project is given free for use and download under the MIT license.
 
