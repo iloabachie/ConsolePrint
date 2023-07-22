@@ -257,10 +257,7 @@ def asteriskify(text:str, *, align:str="center", underscore:bool=True, format:st
     print('\033[0m', end='\r')
     
 
-
-# Code test
-if __name__ == "__main__":
-    os.system('cls')
+def terminal_test():
     printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
     printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='red')
     flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='green')

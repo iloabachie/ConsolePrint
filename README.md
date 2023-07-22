@@ -20,7 +20,16 @@ print(calendar(2023))
 file.endConsoleSave()
 ```
 2.  This module permits differnt colourful print animations to be output to file.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
-<b>Preset string values for the format argument</b>
+To view a full list of all the ANSI escape sequences and confirm if your terminal can display the output, import the package and run the command below:
+```python
+import ConsolePrint
+ConsolePrint.ansi_codes()
+
+#For a preview of what is possible
+Consoleprint.terminal_test()
+```
+
+<b>Preset string values may be used instead of the ANSI escape sequence for the format argument</b>
 <table>
     <tr>
         <td>'default' =        '\033[0m'</td>
