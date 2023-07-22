@@ -26,7 +26,7 @@ import ConsolePrint
 ConsolePrint.ansi_codes()
 
 #For a preview of what is possible
-Consoleprint.terminal_test()
+ConsolePrint.terminal_test()
 ```
 
 <b>Preset string values may be used instead of the ANSI escape sequence for the format argument</b>
