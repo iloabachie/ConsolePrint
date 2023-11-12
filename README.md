@@ -23,12 +23,11 @@ file.endConsoleSave()
 # To save the output of a single function and all print logs use the func2file decorator
 @func2file(filename='function_output', prompt=False)
 def calendar_print():
-    import calendar, random
-    print("Printing Calendar")
-    print(calendar.calendar(random.randint(1900, 2199)))
+    import calendar
+    print(calendar.calendar(2024))
     return "my output"
 
-caendarl_print()
+calendar_print()
 
 ```
 2.  This module permits differnt colourful print animations to be output to file.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
@@ -46,20 +45,21 @@ The following preset string values may be used instead of the ANSI escape sequen
 
 | Format  | ANSI Escape Sequence | Format       | ANSI Escape Sequence |
 |---------|----------------------|------------- |----------------------|
-| grey    | `\033[30m`           | underscore   |   `\033[4m`          |
-| red     | `\033[31m`           | strike       |   `\033[9m`          |
-| green   | `\033[32m`           | double_under |   `\033[21m`         |
-| yellow  | `\033[33m`           | red_bg       |   `\033[41m`         |
-| blue    | `\033[34m`           | green_bg     |   `\033[42m`         |
-| magenta | `\033[35m`           | yellow_bg    |   `\033[43m`         |
-| cyan    | `\033[36m`           | blue_bg      |   `\033[44m`         |
-| white   | `\033[37m`           | magenta_bg   |   `\033[45m`         |
-| bold    | `\033[1m`            | cyan_bg      |   `\033[46m`         |
-| italics | `\033[3m`            | white_bg     |   `\033[47m`         |
-| default | `\033[0m`            |
+| grey    | \033[30m             | underscore   |    \033[4m           |
+| red     | \033[31m             | strike       |    \033[9m           |
+| green   | \033[32m             | double_under |    \033[21m          |
+| yellow  | \033[33m             | red_bg       |    \033[41m          |
+| blue    | \033[34m             | green_bg     |    \033[42m          |
+| magenta | \033[35m             | yellow_bg    |    \033[43m          |
+| cyan    | \033[36m             | blue_bg      |    \033[44m          |
+| white   | \033[37m             | magenta_bg   |    \033[45m          |
+| bold    | \033[1m              | cyan_bg      |    \033[46m          |
+| italics | \033[3m              | white_bg     |    \033[47m          |
+| default | \033[0m              |
 
 
-```python port ConsolePrint.animate as prt 
+```python 
+import ConsolePrint.animate as prt 
 
 prt.printing("hello this should print letter by letter", delay=0.05, style="letter", stay=True, rev=False, format='strike')
 prt.printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='red_bg')
