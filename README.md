@@ -42,35 +42,24 @@ ConsolePrint.ansi_codes()
 ConsolePrint.terminal_test()
 ```
 
-the following preset string values may be used instead of the ANSI escape sequences
+The following preset string values may be used instead of the ANSI escape sequences
 
-| Format         | ANSI Escape Sequence |
-|----------------|----------------------|
-| default        |   `\033[0m`          |
-| grey           |   `\033[30m`         |
-| red            |   `\033[31m`         |
-| green          |   `\033[32m`         |
-| yellow         |   `\033[33m`         |
-| blue           |   `\033[34m`         |
-| magenta        |   `\033[35m`         |
-| cyan           |   `\033[36m`         |
-| white          |   `\033[37m`         |
-| bold           |   `\033[1m`          |
-| italics        |   `\033[3m`          |
-| underscore     |   `\033[4m`          |
-| strike         |   `\033[9m`          |
-| double_under   |   `\033[21m`         |
-| red_bg         |   `\033[41m`         |
-| green_bg       |   `\033[42m`         |
-| yellow_bg      |   `\033[43m`         |
-| blue_bg        |   `\033[44m`         |
-| magenta_bg     |   `\033[45m`         |
-| cyan_bg        |   `\033[46m`         |
-| white_bg       |   `\033[47m`         |
+| Format  | ANSI Escape Sequence | Format       | ANSI Escape Sequence |
+|---------|----------------------|------------- |----------------------|
+| grey    | `\033[30m`           | underscore   |   `\033[4m`          |
+| red     | `\033[31m`           | strike       |   `\033[9m`          |
+| green   | `\033[32m`           | double_under |   `\033[21m`         |
+| yellow  | `\033[33m`           | red_bg       |   `\033[41m`         |
+| blue    | `\033[34m`           | green_bg     |   `\033[42m`         |
+| magenta | `\033[35m`           | yellow_bg    |   `\033[43m`         |
+| cyan    | `\033[36m`           | blue_bg      |   `\033[44m`         |
+| white   | `\033[37m`           | magenta_bg   |   `\033[45m`         |
+| bold    | `\033[1m`            | cyan_bg      |   `\033[46m`         |
+| italics | `\033[3m`            | white_bg     |   `\033[47m`         |
+| default | `\033[0m`            |
 
 
-```python
-import ConsolePrint.animate as prt 
+```python port ConsolePrint.animate as prt 
 
 prt.printing("hello this should print letter by letter", delay=0.05, style="letter", stay=True, rev=False, format='strike')
 prt.printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='red_bg')
