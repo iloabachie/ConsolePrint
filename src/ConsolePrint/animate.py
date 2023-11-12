@@ -100,7 +100,7 @@ def flashprint(text:str, *, blinks:int=5, delay:float=0.2, stay:bool=True, forma
         print(' ' * len(text), end='\r'), time.sleep(delay)
     if stay:
         print(text)
-    print('\033[0m', end='\r')
+    print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
 def flashtext(phrase:str, text:str, *, index='end', blinks:int=5, delay:float=0.2, format:str='default'):
@@ -122,7 +122,7 @@ def flashtext(phrase:str, text:str, *, index='end', blinks:int=5, delay:float=0.
         print(phrase1 + textb + phrase2, end='\r')
         time.sleep(delay)
     print(phrase1 + text + phrase2)
-    print('\033[0m', end='\r')
+    print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
 def animate1(text:str, *, symbol:str="#", format:str='default'):
@@ -135,6 +135,7 @@ def animate1(text:str, *, symbol:str="#", format:str='default'):
     symbol = len(text) * symbol
     flashprint(symbol, blinks=3, stay=False, format=format)
     flashprint(text, blinks=2, stay=True, format=format)
+    print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
 def animate2(text:str, *, symbol:str="#", delay:float=0.05, format:str='default'):
@@ -253,21 +254,23 @@ def asteriskify(text:str, *, align:str="center", underscore:bool=True, format:st
         raise Exception("Align argument error") 
     print(indent + text)
     if underscore:
-        print(indent + '*' * length)
-    print('\033[0m', end='\r')
-    
-
-def terminal_test():
-    printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
-    printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='red')
-    flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='green')
-    flashtext("The text in  will flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='yellow')
-    animate1("This text is animated with #", symbol="#", format='red')
-    animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
-    text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
-    star_square(10, symbol="@", align=15, flush="True", format="strike")
-    asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan')
-
+        # print(__terminal_width * '#', (len(indent)-9) * '$' + length * '#', sep="\n")
+        print(indent + '*' * length + '\033[0m' + ' ' * (__terminal_width + 9 - (length + len(indent))))
+    # x=0
+    # for _ in indent:
+    #     print((x:=x+1), _)
 
 if __name__ == "__main__":
+    def terminal_test():
+        printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
+        printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='green_bg')
+        flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='blue_bg')
+        flashtext("The text in  will flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='yellow_bg')
+        animate1("This text is animated with #", symbol="#", format='red_bg')
+        animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
+        text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
+        star_square(10, symbol="@", align=15, flush="True", format="blue_bg")
+        asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan_bg')
+        print('hello')
+    
     terminal_test()
