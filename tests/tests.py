@@ -24,6 +24,12 @@ print(calendar.calendar(2023))
 
 file.endConsoleSave()  
 
+@file.func2file()
+def print_calendar():
+    calendar.calendar(2023)
+
+print_calendar()
+
 # loading.py
 import ConsolePrint.loading as load
 

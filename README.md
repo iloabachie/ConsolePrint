@@ -21,14 +21,14 @@ file.endConsoleSave()
 
 
 # To save the output of a single function and all print logs use the func2file decorator
-@func2file(filename='aaa', prompt=False)
-def cal_print():
-    import calendar
+@func2file(filename='function_output', prompt=False)
+def calendar_print():
+    import calendar, random
     print("Printing Calendar")
     print(calendar.calendar(random.randint(1900, 2199)))
     return "my output"
 
-cal_print()
+caendarl_print()
 
 ```
 2.  This module permits differnt colourful print animations to be output to file.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
