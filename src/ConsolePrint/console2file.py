@@ -15,6 +15,9 @@ def __saving(t, text='Writing to file...', confirm=False):
         print('Complete!!!             ')
         
 def __open_file(filename, prompt:bool=True):
+    if sys.platform == 'linux':
+        prompt = False
+        print("Prompt only works with Windows OS")
     if prompt:
         open_file = input("\nWould you like to open the file? y/n: ")
         if open_file.strip().lower() == "y":
@@ -26,13 +29,10 @@ def __open_file(filename, prompt:bool=True):
                 print("Error opening file.")
     
 
-def startConsoleSave(name:str=''):
+def startConsoleSave(name:str='code_output'):
     """Starts the process to save the output to file"""
     global filename
-    if name:
-        filename = name
-    else:
-        filename = 'terminal_output'    
+    filename = name 
     sys.stdout = open(f'{filename}.txt', 'a')  # redirects output to specified file
 
 
@@ -41,7 +41,7 @@ def endConsoleSave(prompt=True):
     sys.stdout.close()
     sys.stdout = sys.__stdout__   # redirects output from file back to terminal
     __saving(1, confirm=True)
-    print(f"Output has been saved to \033[36m{filename}\033[0m")
+    print(f"Output has been saved to \033[36m{filename}.txt\033[0m")
     __open_file(filename, prompt)
 
 
@@ -52,10 +52,10 @@ def func2file(filename:str='function_output', prompt:bool=True):
             with open(f"{filename}.txt", 'a') as sys.stdout:
                 output = funct(*args, **kwargs)
                 print('\nThe function return value is:')
-                print(output)
+                print('>> ', output)
             sys.stdout = sys.__stdout__
             __saving(1, confirm=True)
-            print(f"Logs and function return value have been written to \033[36m{filename}.txt\033[0m\n") 
+            print(f"Logs and function return value have been written to \033[36m{filename}.txt\033[0m") 
             __open_file(filename, prompt)
         return wrapper
     return decorator
@@ -69,13 +69,13 @@ if __name__ == "__main__":
     startConsoleSave('bbb')
     print("Printing Calendar")
     print(calendar.calendar(2023))    
-    endConsoleSave()      
+    endConsoleSave(prompt=True)      
 
-    @func2file('aaa')
+    @func2file('aaa', prompt=True)
     def prints():
         print("Printing Calendar")
         print(calendar.calendar(2024))
-        return "i am done"
+        return "my output"
     
     prints()
     
