@@ -267,3 +267,7 @@ def terminal_test():
     text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
     star_square(10, symbol="@", align=15, flush="True", format="strike")
     asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan')
+
+
+if __name__ == "__main__":
+    terminal_test()

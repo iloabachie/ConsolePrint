@@ -13,3 +13,5 @@ def ansi_codes():
     for _ in range(0, 256, 2):
         print(f'\033[48;5;{_}mANSI- "\\033[48;5;{_}m"\033[0m || \033[48;5;{_+1}mANSI- "\\033[48;5;{_+1}m"\033[0m')
 
+if __name__ == "__main__":
+    ansi_codes()
