@@ -85,8 +85,8 @@ def printing(text:str, *, delay:float=0.05, style:str='letter', stay:bool=True, 
                     print(' '.join(text[-1 - _:]), end='\r')
                     time.sleep(delay)
     if stay:
-        print()
-    print('\033[0m', end='\r')
+        print("\033[0m")
+    print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
 def flashprint(text:str, *, blinks:int=5, delay:float=0.2, stay:bool=True, format:str='default'):
@@ -150,7 +150,7 @@ def animate2(text:str, *, symbol:str="#", delay:float=0.05, format:str='default'
         print(_, end="", flush=True)
         time.sleep(delay)
     flashprint(text, blinks=2, stay=True, format=format)
-    print('\033[0m', end='\r')
+    print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
 def text_box(text:str, *, symbol:str="#", spread:bool=False, padding:bool=False, wall:bool=True, align:str|int="center", format:str='default'):
