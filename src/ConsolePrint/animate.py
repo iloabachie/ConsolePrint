@@ -256,9 +256,6 @@ def asteriskify(text:str, *, align:str="center", underscore:bool=True, format:st
     if underscore:
         # print(__terminal_width * '#', (len(indent)-9) * '$' + length * '#', sep="\n")
         print(indent + '*' * length + '\033[0m' + ' ' * (__terminal_width + 9 - (length + len(indent))))
-    # x=0
-    # for _ in indent:
-    #     print((x:=x+1), _)
 
 if __name__ == "__main__":
     def terminal_test():
@@ -269,8 +266,8 @@ if __name__ == "__main__":
         animate1("This text is animated with #", symbol="#", format='red_bg')
         animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
         text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
-        star_square(10, symbol="@", align=15, flush="True", format="blue_bg")
-        asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan_bg')
+        star_square(10, symbol="^", align=15, flush="True", format="blue_bg")
+        asteriskify('This has been asteriskified', align='right', underscore=True, format='cyan_bg')
         print('hello')
     
     terminal_test()
