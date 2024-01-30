@@ -1,6 +1,17 @@
 # Test codes.  Ensure you have installed the module first using: pip install ConsolePrint
 
 # animate.py
+import platform
+import os
+
+def clear_terminal():
+    match platform.system():
+        case "Windows": command = 'cls'
+        case _: command = 'clear'
+    os.system(command)
+
+clear_terminal()
+
 import ConsolePrint.animate as prt
 
 prt.printing("hello this should print letter by letter", delay=0.05, style="letter", stay=True, rev=False, format='double_under')
