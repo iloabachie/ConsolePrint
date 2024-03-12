@@ -257,17 +257,19 @@ def asteriskify(text:str, *, align:str="center", underscore:bool=True, format:st
         # print(__terminal_width * '#', (len(indent)-9) * '$' + length * '#', sep="\n")
         print(indent + '*' * length + '\033[0m' + ' ' * (__terminal_width + 9 - (length + len(indent))))
 
-if __name__ == "__main__":
-    def terminal_test():
-        printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
-        printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='green_bg')
-        flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='blue_bg')
-        flashtext("The text in  will flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='yellow_bg')
-        animate1("This text is animated with #", symbol="#", format='red_bg')
-        animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
-        text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
-        star_square(10, symbol="^", align=15, flush="True", format="blue_bg")
-        asteriskify('This has been asteriskified', align='right', underscore=True, format='cyan_bg')
-        print('hello')
-    
+
+def terminal_test():
+    printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
+    printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='green_bg')
+    flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='blue_bg')
+    flashtext("The text in  should flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='yellow_bg')
+    animate1("This text is animated with #", symbol="#", format='red_bg')
+    animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
+    text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
+    asteriskify('This has been asteriskified', align='right', underscore=True, format='cyan_bg')
+    print('Thank you for testing ConsolePrint')
+        
+        
+if __name__ == "__main__":  
+    star_square(10, symbol="^", align=15, flush="True", format="blue_bg")  
     terminal_test()

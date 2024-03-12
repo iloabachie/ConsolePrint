@@ -1,6 +1,5 @@
 # Test codes.  Ensure you have installed the module first using: pip install ConsolePrint
 
-# animate.py
 import platform
 import os
 
@@ -21,7 +20,7 @@ prt.flashtext("The text in  will flash", "UPPER CASE", blinks=5, index=12, delay
 prt.animate1("This text is animated with #", symbol="#", format='blue')
 prt.animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
 prt.text_box("BOXED IN", symbol="#", padding=True, wall=True, align='center', format='\033[48;5;4m')
-prt.star_square(10, symbol="@", align=15, flush="True", format="\033[104m")
+prt.star_square(10, symbol="x", align=15, flush="True", format="\033[104m")
 prt.asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan')
 
 
@@ -31,8 +30,8 @@ prt.flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, f
 prt.flashtext("The text in  will flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='yellow_bg')
 prt.animate1("This text is animated with #", symbol="#", format='blue_bg')
 prt.animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
-prt.text_box("BOXED IN", symbol="#", padding=True, wall=True, align='center', spread=True, format='\033[48;5;4m')
-prt.star_square(10, symbol="@", align=15, flush="True", format="\033[104m")
+prt.text_box("BOXED IN", symbol="X", padding=True, wall=True, align='center', spread=True, format='\033[48;5;4m')
+prt.star_square(15, symbol="%", align=15, flush="True", format="\033[104m")
 prt.asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan_bg')
 
 # console2file.py
