@@ -39,6 +39,7 @@ ConsolePrint.ansi_codes()
 
 # Sample functionality
 ConsolePrint.terminal_test()
+
 ```
 
 The following preset string values may be used instead of the ANSI escape sequences
@@ -81,6 +82,7 @@ print()
 load.loading2(5)
 print()
 load.loading3(5)
+
 ```
 ## License
 This project is given free for use and download under the MIT license.
