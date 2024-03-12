@@ -8,6 +8,16 @@ Requires python 3.10 or later versions.
 You may install it form PyPI.org using the pip command typed in your terminal.<br>
 `pip install ConsolePrint`
 
+# Terminal Compatibility
+To check for terminal compatibility, run the code below
+
+```python
+import ConsolePrint
+
+ConsolePrint.terminal_test()
+
+```
+
 # Test Cases
 1.  This permits output of programs to be saved in a file.  Run your code between the start and end console save functions to save the output to file.  The prompt argument determines if a prompt is displayed to open the file (Windows only).
 ```python
@@ -31,17 +41,13 @@ calendar_print()
 
 ```
 2.  This module permits differnt colourful print animations to be output to file.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
-To view a full list of all the ANSI escape sequences and confirm if your terminal can display the output, import the package and run the command below:
+To view a full list of all the ANSI escape sequences and confirm if your terminal can display the output, import the package and run the code below:
 ```python
 import ConsolePrint
-# Check if terminal is supported
+# To view available ANSI codes
 ConsolePrint.ansi_codes()
 
-# Sample functionality
-ConsolePrint.terminal_test()
-
 ```
-
 The following preset string values may be used instead of the ANSI escape sequences
 
 | Format  | ANSI Escape Sequence | Format       | ANSI Escape Sequence |
@@ -58,7 +64,7 @@ The following preset string values may be used instead of the ANSI escape sequen
 | italics | \033[3m              | white_bg     |    \033[47m          |
 | default | \033[0m              |
 
-
+Code usage:
 ```python 
 import ConsolePrint.animate as prt 
 

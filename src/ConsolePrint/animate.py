@@ -2,6 +2,7 @@ import time
 import os
 import re
 
+version = "1.8.8"
 
 print('\033[0m', end="\r")
 __terminal_width = os.get_terminal_size().columns
@@ -267,7 +268,7 @@ def terminal_test():
     animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
     text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
     asteriskify('This has been asteriskified', align='right', underscore=True, format='cyan_bg')
-    print('Thank you for testing ConsolePrint')
+    print(f'Thank you for using ConsolePrint {version}')
         
         
 if __name__ == "__main__":  
