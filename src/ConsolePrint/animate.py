@@ -254,9 +254,8 @@ def asteriskify(text:str, *, align:str="center", underscore:bool=True, format:st
     else:
         print('\033[0m\r')
         raise Exception("Align argument error") 
-    print(indent + text)
+    print(indent + text + '\033[0m')
     if underscore:
-        # print(__terminal_width * '#', (len(indent)-9) * '$' + length * '#', sep="\n")
         print(indent + '*' * length + '\033[0m' + ' ' * (__terminal_width + 9 - (length + len(indent))))
 
 
