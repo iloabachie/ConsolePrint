@@ -47,8 +47,8 @@ def __ansify_color(color:str):
         case 'white_bg': color = '\033[47m'
         case 'italics': color = '\033[3m'
         case _:
-            pattern1 = "\\033\[(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"
-            pattern2 = "\\033\[48;5;(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"            
+            pattern1 = "\\033\\[(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"
+            pattern2 = "\\033\\[48;5;(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"            
             if not (re.fullmatch(pattern1, color) or re.fullmatch(pattern2, color)):
                 raise FormatArgumentError("Invalid ANSI escape sequence for argument format")
     return color
@@ -267,10 +267,10 @@ def terminal_test():
     animate1("This text is animated with #", symbol="#", format='red_bg')
     animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
     text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
-    asteriskify('This has been asteriskified', align='right', underscore=True, format='cyan_bg')
-    print(f'Thank you for using ConsolePrint {version}')
+    asteriskify('This has been asteriskified', align='right', underscore=False, format='cyan_bg')
+    # print(f'Thank you for using ConsolePrint {version}')
         
         
 if __name__ == "__main__":  
-    star_square(10, symbol="@", align=15, flush="True", format="blue_bg")  
+    # star_square(10, symbol="@", align=15, flush="True", format="blue_bg")  
     terminal_test()

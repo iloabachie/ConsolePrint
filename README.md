@@ -1,6 +1,6 @@
 # ConsolePrint Module
 This module makes printing to the terminal more exciting by animating the text output.
-It also makes the output richer my providing access to color modification.
+It also makes the output richer my providing access to color codes for terminal or console applicatons.
 You can also save routine console output to a file using the console2file module.
 Requires python 3.10 or later versions.
 
@@ -42,7 +42,7 @@ calendar_print()
 
 ```
 2.  This module permits differnt colourful print animations to be output to file.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
-To view a full list of all the ANSI escape sequences and confirm if your terminal can display the output, import the package and run the code below:
+To view a full list of all the ANSI escape sequences in the 256-color mode and confirm if your terminal can display the output, import the package and run the code below:
 
 ```python
 import ConsolePrint

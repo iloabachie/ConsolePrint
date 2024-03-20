@@ -47,7 +47,7 @@ def endConsoleSave(prompt=True):
     __open_file(filename, prompt)
 
 
-def func2file(filename:str='function_output', prompt:bool=True):
+def func2file(filename:str='function_output.txt', prompt:bool=True):
     '''Writes the output of a function to a text file'''
     def decorator(funct):
         def wrapper(*args, **kwargs):
@@ -65,12 +65,12 @@ def func2file(filename:str='function_output', prompt:bool=True):
     
 if __name__ == "__main__":
     print("*****\nRunning module test")
-    import calendar, random
+    # import calendar, random
     
-    startConsoleSave('bbb')
-    print("Printing Calendar")
-    print(calendar.calendar(random.randint(1900, 2199)))    
-    endConsoleSave()      
+    # startConsoleSave('bbb')
+    # print("Printing Calendar")
+    # print(calendar.calendar(random.randint(1900, 2199)))    
+    # endConsoleSave()      
 
     @func2file('aaa', prompt=True)
     def cal_print():
