@@ -2,7 +2,7 @@ import time
 import os
 import re
 
-version = "1.8.9"  # Change version in pyproject
+version = "1.9.1"  # Change version in pyproject
 
 print('\033[0m', end="\r")
 __terminal_width = os.get_terminal_size().columns
