@@ -2,7 +2,7 @@ import time
 import os
 import re
 
-version = "1.8.8"
+version = "1.8.9"  # Change version in pyproject
 
 print('\033[0m', end="\r")
 __terminal_width = os.get_terminal_size().columns
@@ -45,6 +45,7 @@ def __ansify_color(color:str):
         case 'magenta_bg': color = '\033[45m'
         case 'cyan_bg': color = '\033[46m'
         case 'white_bg': color = '\033[47m'
+        case 'italics': color = '\033[3m'
         case _:
             pattern1 = "\\033\[(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"
             pattern2 = "\\033\[48;5;(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"            
@@ -263,7 +264,7 @@ def terminal_test():
     printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
     printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='green_bg')
     flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='blue_bg')
-    flashtext("The text in  should flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='yellow_bg')
+    flashtext("The text in  should flash", "UPPER CASE", blinks=5, index=12, delay=0.2, format='italics')
     animate1("This text is animated with #", symbol="#", format='red_bg')
     animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
     text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
@@ -272,5 +273,5 @@ def terminal_test():
         
         
 if __name__ == "__main__":  
-    star_square(10, symbol="^", align=15, flush="True", format="blue_bg")  
+    star_square(10, symbol="@", align=15, flush="True", format="blue_bg")  
     terminal_test()

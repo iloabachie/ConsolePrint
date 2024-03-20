@@ -12,13 +12,13 @@ def countdown(t, confirm=True):
     if confirm:
         print('Timer completed!')
 
-def loading1(t, confirm=True):
+def loading1(t, text='Loading...', confirm=True):
     x = t
     percent = 0
     for _ in range(t):        
         percent += 100 / x
         y = round(percent, 1) / 100
-        print(f" Loading... [{'|||' * _}{'   ' * (x - _ - 1)}]", '{:4.0%}'.format(y), end="\r")
+        print(f" {text} [{'|||' * _}{'   ' * (x - _ - 1)}]", '{:4.0%}'.format(y), end="\r")
         time.sleep(0.2)
         t -= 1    
     if confirm:
@@ -46,9 +46,9 @@ def loading3(t):
 if __name__ == '__main__':
     countdown(5)
     print()
-    loading1(20)  
+    loading1(20, 'Processing...')  
     print()
-    loading2(5, 'thinking...')
+    loading2(5, 'Processing request...')
     print()
     loading3(5)
   
