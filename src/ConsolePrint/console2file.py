@@ -15,21 +15,23 @@ def __saving(t, text='Writing to file...', confirm=False):
     if confirm:
         print('Complete!!!             ')
         
-def __open_file(filename, prompt:bool=True):
-    if 'linux' in sys.platform:
-        prompt = False
-        print("Prompt only works with Windows OS")
+def __open_file(filename, prompt:bool=False):    
     if prompt:
-        open_file = input("\nWould you like to open the file? y/n: ")
-        if open_file.strip().lower() == "y":
-            try:
-                subprocess.Popen(["start", "", f'{filename}.txt'], shell=True)
-            except FileNotFoundError:
-                print("File not found.")
-            except OSError:
-                print("Error opening file.")
-            else:
-                print("File opened in OS Window")    
+        if 'linux' in sys.platform:
+            print("Prompt only works with Windows OS")
+        else:
+            open_file = input("\nWould you like to open the file? Y/n: ").lower().strip()
+            while open_file not in ['y', 'yes', 'no', 'n', '']:
+                open_file = input("\nInvalid input. Would you like to open the file? Y/n: ").lower().strip()
+            if open_file in ['y', 'yes', '']:
+                try:
+                    subprocess.Popen(["start", "", f'{filename}.txt'], shell=True)
+                except FileNotFoundError:
+                    print("File not found.")
+                except OSError:
+                    print("Error opening file.")
+                else:
+                    print("File opened in OS Window")    
 
 def startConsoleSave(name:str='code_output'):
     """Starts the process to save the output to file"""
@@ -43,40 +45,47 @@ def endConsoleSave(prompt=True):
     sys.stdout.close()
     sys.stdout = sys.__stdout__   # redirects output from file back to terminal
     __saving(1)
-    print(f"Output has been saved to \033[36m{os.getcwd()}\\{filename}.txt\033[0m")
+    if 'linux' in sys.platform:
+        print(f"Output has been saved to \033[36m{os.getcwd()}/{filename}.txt\033[0m")
+    else:
+        print(f"Output has been saved to \033[36m{os.getcwd()}\\{filename}.txt\033[0m")
     __open_file(filename, prompt)
 
 
-def func2file(filename:str='function_output.txt', prompt:bool=True):
+def func2file(filename:str='function_output', prompt:bool=True):
     '''Writes the output of a function to a text file'''
     def decorator(funct):
         def wrapper(*args, **kwargs):
             with open(f"{filename}.txt", 'a') as sys.stdout:
+                print('The function logs are:\n')
                 output = funct(*args, **kwargs)
                 print('\nThe function return value is:')
                 print('>> ', output)
             sys.stdout = sys.__stdout__
             __saving(1)
-            print(f"Logs and function return value have been saved to \033[36m{os.getcwd()}\\{filename}.txt\033[0m") 
+            if 'linux' in sys.platform:
+                print(f"Logs and function return value have been saved to \033[36m{os.getcwd()}/{filename}.txt\033[0m")
+            else:
+                print(f"Logs and function return value have been saved to \033[36m{os.getcwd()}\\{filename}.txt\033[0m") 
             __open_file(filename, prompt)
         return wrapper
     return decorator
-        
-    
+
+
 if __name__ == "__main__":
     print("*****\nRunning module test")
-    # import calendar, random
+    import calendar, random
     
-    # startConsoleSave('bbb')
-    # print("Printing Calendar")
-    # print(calendar.calendar(random.randint(1900, 2199)))    
-    # endConsoleSave()      
+    startConsoleSave('bbb')
+    print("Printing Calendar")
+    print(calendar.calendar(random.randint(1900, 2199)))    
+    endConsoleSave()      
 
-    @func2file('aaa', prompt=True)
+    @func2file(filename='aaa', prompt=True)
     def cal_print():
         print("Printing Calendar")
         print(calendar.calendar(random.randint(1900, 2199)))
-        return "my output"
+        return "Return value is also saved to file"
     
     cal_print()    
     print("End of Test\n*****")

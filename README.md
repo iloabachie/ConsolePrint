@@ -31,12 +31,14 @@ print(calendar(2023))
 file.endConsoleSave()
 
 
-# To save the output of a single function and all print logs use the func2file decorator
+# To save the output of a single function and all print logs used in the function, use the func2file decorator
 @file.func2file(filename='function_output.txt', prompt=False)
 def calendar_print():
+    print("log 1: Printing Calendar...")
     import calendar
     print(calendar.calendar(2024))
-    return "my output"
+    print("log 2: Printing finished...")
+    return "This output value is also saved to the file."
 
 calendar_print()
 
