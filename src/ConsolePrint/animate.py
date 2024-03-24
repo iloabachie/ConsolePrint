@@ -2,7 +2,7 @@ import time
 import os
 import re
 
-version = "1.9.1"  # Change version in pyproject
+version = "1.9.3"  # Change version in pyproject
 
 print('\033[0m', end="\r")
 __terminal_width = os.get_terminal_size().columns
@@ -268,9 +268,9 @@ def terminal_test():
     animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
     text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
     asteriskify('This has been asteriskified', align='right', underscore=False, format='cyan_bg')
-    # print(f'Thank you for using ConsolePrint {version}')
+    print(f'Thank you for using ConsolePrint {version}')
         
         
 if __name__ == "__main__":  
-    # star_square(10, symbol="@", align=15, flush="True", format="blue_bg")  
+    star_square(10, symbol="@", align=15, flush="True", format="blue_bg")  
     terminal_test()

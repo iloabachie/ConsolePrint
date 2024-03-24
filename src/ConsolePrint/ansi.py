@@ -3,7 +3,6 @@
 # Replace <color_code> with a number between 0 and 255 to specify the desired color. 
 # For example, \033[48;5;100m sets the background color to a custom color with code 100.
 
-
 def ansi_codes():
     print("    Colour Codes")
     for _ in range(0, 108, 2):

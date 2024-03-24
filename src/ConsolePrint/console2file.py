@@ -52,7 +52,7 @@ def endConsoleSave(prompt=False):
     __open_file(filename, prompt)
 
 
-def func2file(filename:str='function_output', prompt:bool=True):
+def func2file(filename:str='function_output', prompt:bool=False):
     '''Writes the output of a function to a text file'''
     def decorator(funct):
         def wrapper(*args, **kwargs):
