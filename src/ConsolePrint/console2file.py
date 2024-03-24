@@ -40,7 +40,7 @@ def startConsoleSave(name:str='code_output'):
     sys.stdout = open(f'{filename}.txt', 'a')  # redirects output to specified file
 
 
-def endConsoleSave(prompt=True):  
+def endConsoleSave(prompt=False):  
     """Ends the save to file process and returns output to console"""  
     sys.stdout.close()
     sys.stdout = sys.__stdout__   # redirects output from file back to terminal
