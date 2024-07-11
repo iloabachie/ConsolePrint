@@ -3,6 +3,7 @@ import sys
 import os
 import subprocess
 import time
+from functools import wraps
 
 
 def __saving(t, text='Writing to file...', confirm=False):
@@ -55,12 +56,13 @@ def endConsoleSave(prompt=False):
 def func2file(filename:str='function_output', prompt:bool=False):
     '''Writes the output of a function to a text file'''
     def decorator(funct):
+        @wraps(funct)
         def wrapper(*args, **kwargs):
             with open(f"{filename}.txt", 'a') as sys.stdout:
-                print('The function logs are:\n')
+                print('Function logs:\n')
                 output = funct(*args, **kwargs)
-                print('\nThe function return value is:')
-                print('>> ', output)
+                if output:
+                    print(f'\nThe return value for {funct.__name__} >> ', output)
             sys.stdout = sys.__stdout__
             __saving(1)
             if 'linux' in sys.platform:
@@ -85,7 +87,7 @@ if __name__ == "__main__":
     def cal_print():
         print("Printing Calendar")
         print(calendar.calendar(random.randint(1900, 2199)))
-        return "Return value is also saved to file"
+        return "######"
     
     cal_print()    
     print("End of Test\n*****")
