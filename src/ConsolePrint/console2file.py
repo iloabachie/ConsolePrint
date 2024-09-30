@@ -62,7 +62,7 @@ def func2file(filename:str='function_output', prompt:bool=False):
                 print('Function logs:\n')
                 output = funct(*args, **kwargs)
                 if output:
-                    print(f'\nThe return value for {funct.__name__} >> ', output)
+                    print(f'\nReturn value for {funct.__name__} >> ', output)
             sys.stdout = sys.__stdout__
             __saving(1)
             if 'linux' in sys.platform:
@@ -85,6 +85,7 @@ if __name__ == "__main__":
 
     @func2file(filename='aaa', prompt=True)
     def cal_print():
+        '''Calendar print'''
         print("Printing Calendar")
         print(calendar.calendar(random.randint(1900, 2199)))
         return "######"
