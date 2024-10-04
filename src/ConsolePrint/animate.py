@@ -1,8 +1,9 @@
 import time
 import os
 import re
+import functools
 
-version = "1.9.3"  # Change version in pyproject
+version = "1.9.4"  # Change version in pyproject
 
 print('\033[0m', end="\r")
 __terminal_width = os.get_terminal_size().columns
@@ -22,6 +23,17 @@ class FormatArgumentError(Exception):
         super().__init__(error_message)
 
 
+def keyboard_interrupt(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):        
+        try:
+            func(*args,**kwargs)
+        except KeyboardInterrupt:
+            print('\033[0m')
+            raise
+    return wrapper
+            
+           
 def __ansify_color(color: str):  
     match color:
         case 'default': color = '\033[0m'
@@ -59,6 +71,7 @@ def is_width_ok(*text_length):
         raise DimensionExceptionError("Terminal width is too small to display text output")
 
 
+@keyboard_interrupt 
 def printing(text: str, *, delay: float=0.05, style: str='letter', stay: bool=True, rev: bool=False, format: str='default'):
     """Prints text to console letter by letter or word by word"""
     is_width_ok(len(text))
@@ -91,6 +104,7 @@ def printing(text: str, *, delay: float=0.05, style: str='letter', stay: bool=Tr
     print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
+@keyboard_interrupt 
 def flashprint(text: str, *, blinks: int=5, delay: float=0.2, stay: bool=True, format: str='default'):
     """Gets printed output to blink"""
     is_width_ok(len(text))
@@ -105,6 +119,7 @@ def flashprint(text: str, *, blinks: int=5, delay: float=0.2, stay: bool=True, f
     print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
+@keyboard_interrupt 
 def flashtext(phrase: str, text: str, *, index='end', blinks: int=5, delay: float=0.2, format: str='default'):
     """Hilights key word by flashing it"""
     is_width_ok(len(text), len(phrase), 1)
@@ -127,6 +142,7 @@ def flashtext(phrase: str, text: str, *, index='end', blinks: int=5, delay: floa
     print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
+@keyboard_interrupt 
 def animate1(text: str, *, symbol: str="#", format: str='default'):
     """Flashing masked text to transition to flasing text"""
     is_width_ok(len(text))
@@ -140,6 +156,7 @@ def animate1(text: str, *, symbol: str="#", format: str='default'):
     print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
+@keyboard_interrupt 
 def animate2(text: str, *, symbol: str="#", delay: float=0.05, format: str='default'):
     """Reveals all characters text by text but first masked then flashes"""
     is_width_ok(len(text))
@@ -156,6 +173,7 @@ def animate2(text: str, *, symbol: str="#", delay: float=0.05, format: str='defa
     print('\033[0m' + ' ' * __terminal_width, end='\r')
 
 
+@keyboard_interrupt 
 def text_box(text: str, *, symbol: str="#", spread: bool=False, padding: bool=False, wall: bool=True, align: str|int="center", format: str='default'):
     """Prints text in a box of symbols.
 If the align parameter is a number then the box is indented by the number count"""
@@ -199,7 +217,8 @@ If the align parameter is a number then the box is indented by the number count"
             if col == length:
                 print('\033[0m')
                 
-                
+
+@keyboard_interrupt               
 def star_square(num: int, *, symbol: str="#", align: str|int='center', flush: bool=True, format: str='default'):
     is_width_ok(num)
     if len(symbol) != 1:
@@ -238,6 +257,7 @@ def star_square(num: int, *, symbol: str="#", align: str|int='center', flush: bo
                 print('\033[0m')
     
 
+@keyboard_interrupt 
 def asteriskify(text: str, *, align: str="center", underscore: bool=True, format: str='default'):
     is_width_ok(len(text))
     format = __ansify_color(format)

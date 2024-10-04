@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ConsolePrint"
-version = "1.9.3"
+version = "1.9.4"
 authors = [
   { name="Udemezue Iloabachie", email="udemezue@gmail.com" },
 ]
