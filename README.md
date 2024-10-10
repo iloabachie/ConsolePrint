@@ -24,11 +24,11 @@ ConsolePrint.terminal_test()
 ```python
 import ConsolePrint.console2file as file  
 
-file.startConsoleSave(name="my_output.txt", prompt=True)
+file.startConsoleSave(name="my_output.txt")
 # Saves all output between the start and end functions to filename argument
 from calendar import calendar
 print(calendar(2023))
-file.endConsoleSave()
+file.endConsoleSave(prompt=True)
 
 
 # To save the output of a single function and all print logs used in the function, use the func2file decorator

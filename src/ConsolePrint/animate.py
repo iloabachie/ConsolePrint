@@ -3,7 +3,7 @@ import os
 import re
 import functools
 
-version = "1.9.6"  # Change version in pyproject
+version = "1.9.7"  # Change version in pyproject
 
 print('\033[0m', end="\r")
 
@@ -317,7 +317,7 @@ def terminal_test():
     animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
     text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
     asteriskify('This has been asteriskified', align='right', underscore=True, format='cyan_bg')
-    print(f'Thank you for using ConsolePrint {version}')
+    print(f'Thank you for using ConsolePrint v{version}')
         
         
 if __name__ == "__main__":  

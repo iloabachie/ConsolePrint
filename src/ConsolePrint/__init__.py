@@ -1,6 +1,4 @@
-from .animate import terminal_test, version
-# from .loading import *
-# from .console2file import *
 from .ansi import ansi_codes
+from .animate import star_square, terminal_test, version
 
 # __all__ = ['terminal_test', 'version', 'ansi_codes']
