@@ -17,7 +17,6 @@ def countdown(t, confirm=True):
 
 def loading1(t, text='Loading...', confirm=True):
     t = 20 if t > 15 else 15 if t > 10 else 10
-    # print(t)
     x = t
     if __terminal_width < 70 + len(text):
         loading3(max(15, t))
