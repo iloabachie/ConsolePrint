@@ -3,7 +3,7 @@ import os
 import re
 import functools
 
-version = "1.9.7"  # Change version in pyproject
+version = "1.9.8"  # Change version in pyproject
 
 print('\033[0m', end="\r")
 

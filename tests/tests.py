@@ -43,7 +43,7 @@ file.startConsoleSave("my_output.txt")
 print("Printing Calendar")
 print(calendar.calendar(2023))
 
-file.endConsoleSave()  
+file.endConsoleSave(prompt=False)  
 
 @file.func2file()
 def print_calendar():
