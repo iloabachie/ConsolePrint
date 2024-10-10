@@ -309,7 +309,11 @@ def asteriskify(text: str, *, align: str="center", underscore: bool=True, format
 
 
 def terminal_test():
-    print(image)
+    try:
+        is_width_ok(terminal_width(), 69)
+        print(image)
+    except DimensionExceptionError:
+        print('\033[91mTerminal width is too small to display ascii image\033[0m')
     printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
     printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='green_bg')
     flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='blue_bg')
