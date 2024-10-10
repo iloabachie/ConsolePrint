@@ -308,12 +308,19 @@ def asteriskify(text: str, *, align: str="center", underscore: bool=True, format
         print(indent + '*' * length + '\033[0m' + ' ' * (width + 9 - (length + len(indent))))
 
 
-def terminal_test():
+@keyboard_interrupt
+def print_logo(delay=0.1,):
     try:
         is_width_ok(terminal_width(), 69)
-        print(image)
+        for line in image.split('\n'):
+            print(line)
+            time.sleep(delay)
     except DimensionExceptionError:
         print('\033[91mTerminal width is too small to display ascii image\033[0m')
+    
+
+def terminal_test():
+    print_logo()
     printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
     printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='green_bg')
     flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='blue_bg')
@@ -322,7 +329,7 @@ def terminal_test():
     animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
     text_box("boxed in", symbol="#", padding=False, wall=True, align='center', spread=True, format='\033[48;5;4m')
     asteriskify('This has been asteriskified', align='right', underscore=True, format='cyan_bg')
-    print(f'Thank you for using ConsolePrint v{version}')
+    print(f'\033[94mThank you for using ConsolePrint v{version}\033[0m')
         
         
 if __name__ == "__main__":  
