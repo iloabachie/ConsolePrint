@@ -2,8 +2,8 @@ import time
 import os
 import re
 import functools
+from .logo import image, version
 
-version = "1.9.8"  # Change version in pyproject
 
 print('\033[0m', end="\r")
 
@@ -309,6 +309,7 @@ def asteriskify(text: str, *, align: str="center", underscore: bool=True, format
 
 
 def terminal_test():
+    print(image)
     printing("hello this should print letter by letter ", delay=0.05, style="letter", stay=True, rev=False, format='red_bg')
     printing("hello this should print word by word but in reverse", delay=0.3, style="word", stay=True, rev=True, format='green_bg')
     flashprint("The entire text should flash", blinks=5, delay=0.2, stay=True, format='blue_bg')
