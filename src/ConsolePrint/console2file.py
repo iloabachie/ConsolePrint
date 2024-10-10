@@ -60,9 +60,9 @@ def func2file(filename:str='function_output', prompt:bool=False):
         def wrapper(*args, **kwargs):
             with open(f"{filename}.txt", 'a') as sys.stdout:
                 print('Function logs:\n')
-                output = funct(*args, **kwargs)
+                output = funct(*args, **kwargs)                    
                 if output:
-                    print(f'\nReturn value for {funct.__name__} >> ', output)
+                    print(f'\nReturn value for {funct.__name__} >> ', output)                   
             sys.stdout = sys.__stdout__
             __saving(1)
             if 'linux' in sys.platform:
