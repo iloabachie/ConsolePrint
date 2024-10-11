@@ -22,21 +22,20 @@ ConsolePrint.terminal_test()
 1.  This permits output of programs to be saved in a file.  Run your code between the start and end console save functions to save the output to file.  The prompt argument determines if a prompt is displayed to open the file (Windows only).
 
 ```python
-import ConsolePrint.console2file as file  
-
-file.startConsoleSave(name="my_output.txt")
-# Saves all output between the start and end functions to filename argument
+import ConsolePrint.console2file as file
 from calendar import calendar
+
+file.startConsoleSave(name="my_output")
+# Saves all output between the start and end functions to filename argument
 print(calendar(2023))
 file.endConsoleSave(prompt=True)
 
 
 # To save the output of a single function and all print logs used in the function, use the func2file decorator
-@file.func2file(filename='function_output.txt', prompt=False)
+@file.func2file(filename='function_output', prompt=False)
 def calendar_print():
     print("log 1: Printing Calendar...")
-    import calendar
-    print(calendar.calendar(2024))
+    print(calendar(2024))
     print("log 2: Printing finished...")
     return "This output value is also saved to the file."
 
@@ -81,6 +80,7 @@ prt.animate1("This text is animated with #", symbol="#", format='magenta')
 prt.animate2("Prints letter by letter but masked with # first  ", symbol="#", delay=0.05, format="\033[48;5;150m")
 prt.text_box("boxed in", symbol="#", padding=True, wall=True, align='right', format='\033[48;5;4m')
 prt.asteriskify('This has been asteriskified', align='center', underscore=True, format='cyan')
+
 ```
 
 3.  This adds loading animations to terminal output.  The load time argument is specified as an integer in seconds.
