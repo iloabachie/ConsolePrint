@@ -1,24 +1,11 @@
 import time
 import os
-import re
 import functools
+from random import choice
 from .logo import image, version
+from .ansi import __ansify_color, DimensionExceptionError
 
-
-print('\033[0m', end="\r")
-
-class DimensionExceptionError(Exception):
-    """Custom error when the terminal width is too small"""
-    def __init__(self, error_message):
-        # self.error_message = error_message
-        super().__init__(error_message)
-
-
-class FormatArgumentError(Exception):
-    """Incorrect ANSI sequence passed"""
-    def __init__(self, error_message):
-        # self.error_message = error_message
-        super().__init__(error_message)
+COLORS = ['default', 'grey', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'bold']
 
 
 def keyboard_interrupt(func):
@@ -32,38 +19,6 @@ def keyboard_interrupt(func):
     return wrapper
             
            
-def __ansify_color(color: str):  
-    match color:
-        case 'default': color = '\033[0m'
-        case 'grey': color = '\033[30m'
-        case 'red': color = '\033[31m'
-        case 'green': color = '\033[32m'
-        case 'yellow': color = '\033[33m'
-        case 'blue': color = '\033[34m'
-        case 'magenta': color = '\033[35m'
-        case 'cyan': color = '\033[36m'
-        case 'white': color = '\033[37m'
-        case 'bold': color = '\033[1m'
-        case 'italics': color = '\033[3m'
-        case 'underscore': color = '\033[4m'
-        case 'strike': color = '\033[9m'
-        case 'double_under': color = '\033[21m'
-        case 'red_bg': color = '\033[41m'
-        case 'green_bg': color = '\033[42m'
-        case 'yellow_bg': color = '\033[43m'
-        case 'blue_bg': color = '\033[44m'
-        case 'magenta_bg': color = '\033[45m'
-        case 'cyan_bg': color = '\033[46m'
-        case 'white_bg': color = '\033[47m'
-        case 'italics': color = '\033[3m'
-        case _:
-            pattern1 = "\\033\\[(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"
-            pattern2 = "\\033\\[48;5;(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])m"            
-            if not (re.fullmatch(pattern1, color) or re.fullmatch(pattern2, color)):
-                raise FormatArgumentError("Invalid ANSI escape sequence for argument format")
-    return color
-
-
 def terminal_width():
     return os.get_terminal_size().columns
 
@@ -252,7 +207,7 @@ def star_square(num: int, *, symbol: str="#", align: str|int='center', flush: bo
     print(format, end='\r')
     if num < 5 or num > width or not isinstance(num, int):
         print('\033[0m\r')
-        raise DimensionExceptionError(f"Invalid square size. Number must be an integer greater than 4 and less than the terminal width: {__terminal_width}")
+        raise DimensionExceptionError(f"Invalid square size. Number must be an integer greater than 4 and less than the terminal width: {width}")
     elif align == 'center':
         indent = '\033[0m' + (' ' * (width//2 - num//2)) + format
     elif align == 'right':
@@ -313,7 +268,7 @@ def print_logo(delay=0.1,):
     try:
         is_width_ok(terminal_width(), 69)
         for line in image.split('\n'):
-            print(line)
+            print(__ansify_color(choice(COLORS)) + line + __ansify_color('default'))
             time.sleep(delay)
     except DimensionExceptionError:
         print('\033[91mTerminal width is too small to display ascii image\033[0m')
