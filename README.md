@@ -19,30 +19,49 @@ ConsolePrint.terminal_test()
 ```
 
 # Test Cases
-1.  This permits output of programs to be saved in a file.  Run your code between the start and end console save functions to save the output to file.  The prompt argument determines if a prompt is displayed to open the file (Windows only).
+1.  This package includes methods for saving the outputs to the terminal in a file.  It can be used as a context manager using the following code.
+
+```python
+import ConsolePrint.console2file as file
+from calendar import calendar
+
+with file.SaveToFile(name='my_output', prompt=True):        
+        print("log 1: Printing Calendar...")
+        print(calendar(2025))
+        print("log 2: Printing finished...") 
+```
+
+Alternatively, run your code between the startConsoleSave and endConsoleSave function calls to save the output to file.  The prompt argument determines if a prompt to open the file is displayed (Windows only).
 
 ```python
 import ConsolePrint.console2file as file
 from calendar import calendar
 
 file.startConsoleSave(name="my_output")
-# Saves all output between the start and end functions to filename argument
-print(calendar(2023))
+
+print("log 1: Printing Calendar...")
+print(calendar(2025))
+print("log 2: Printing finished...") 
+
 file.endConsoleSave(prompt=True)
+```
 
+To save the output of a single function, use the func2file decorator.
 
-# To save the output of a single function and all print logs used in the function, use the func2file decorator
+```python
+import ConsolePrint.console2file as file
+from calendar import calendar
+
 @file.func2file(filename='function_output', prompt=False)
 def calendar_print():
     print("log 1: Printing Calendar...")
-    print(calendar(2024))
+    print(calendar(2025))
     print("log 2: Printing finished...")
     return "This output value is also saved to the file."
 
 calendar_print()
-
 ```
-2.  This module permits differnt colourful print animations to be output to file.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
+2.  This module permits differnt colourful print animations to be output to the terminal.  The format argument takes an ANSI escape sequences as a string.  You may also modify other arguments as desired.<br>
 To view a full list of all the ANSI escape sequences in the 256-color mode and confirm if your terminal can display the output, import the package and run the code below:
 
 ```python
