@@ -2,12 +2,8 @@ import time
 import os
 import functools
 from random import choice
-if os.getenv('ENV') == 'development':
-    from ansi import __ansify_color, DimensionExceptionError
-    from logo import image, version
-else:
-    from .ansi import __ansify_color, DimensionExceptionError
-    from .logo import image, version
+from .ansi import __ansify_color, DimensionExceptionError
+from .logo import image, version
 
 
 COLORS = ['default', 'grey', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'bold']

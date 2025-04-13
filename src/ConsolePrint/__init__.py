@@ -1,12 +1,6 @@
-import os
-if os.getenv('ENV') == 'development':
-    from ansi import ansi_codes
-    from animate import terminal_test
-    from logo import version
-else:
-    from .ansi import ansi_codes
-    from .animate import terminal_test
-    from .logo import version
+from .ansi import ansi_codes
+from .animate import terminal_test
+from .logo import version
 
 
 print('\033[0m', end="\r")
