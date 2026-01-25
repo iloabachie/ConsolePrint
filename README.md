@@ -26,9 +26,9 @@ import ConsolePrint.console2file as file
 from calendar import calendar
 
 with file.SaveToFile(name='my_output', prompt=True):        
-        print("log 1: Printing Calendar...")
-        print(calendar(2025))
-        print("log 2: Printing finished...") 
+    print("log 1: Printing Calendar...")
+    print(calendar(2025))
+    print("log 2: Printing finished...") 
 ```
 
 Alternatively, run your code between the startConsoleSave and endConsoleSave function calls to save the output to file.  The prompt argument determines if a prompt to open the file is displayed (Windows only).

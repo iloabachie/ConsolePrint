@@ -36,18 +36,24 @@ prt.asteriskify('This has been asteriskified', align='center', underscore=True, 
 
 # console2file.py
 import ConsolePrint.console2file as file
-import calendar
+from calendar import calendar
 
+# Method 1: Context Manager
+with file.SaveToFile(name='my_output', prompt=True):        
+    print("log 1: Printing Calendar...")
+    print(calendar(2025))
+    print("log 2: Printing finished...") 
+
+# Method 2: 
 file.startConsoleSave("my_output.txt")
-
 print("Printing Calendar")
-print(calendar.calendar(2023))
-
+print(calendar(2023))
 file.endConsoleSave(prompt=False)  
 
+# Method 3: Decorator
 @file.func2file()
 def print_calendar():
-    print(calendar.calendar(2023))
+    print(calendar(2023))
 
 print_calendar()
 
